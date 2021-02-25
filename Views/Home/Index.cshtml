@@ -1,0 +1,35 @@
+﻿@model List<Chef>
+<header class="container">
+    <div class="d-flex flex-lg-row justify-content-between align-items-center">
+        <h1><a asp-action="Index" asp-controller="Home">Chefs</a> | <a asp-action="Dishes" asp-controller="Home">Dishes</a></h1>
+        <a href="Add/Chef">Add A Chef</a>
+    </div>
+</header>
+<main class="container">
+    <div class="container-fluid">
+        <h3>Check out our roster of Chef's!</h3>
+        <div style="width: 100%; height: 2px; border: solid black 1px;"></div>
+        <table class="table-bordered">
+            <thead>
+                <th>Name</th>
+                <th>Age</th>
+                <th># of Dishes</th>
+            </thead>
+            <tbody>
+                <tr>
+                @foreach (Chef chef in Model)
+                {
+                    <tr>
+                        <td>@chef.FirstName @chef.LastName</td>
+                        @{DateTime now = chef.UpdatedAt; 
+                        DateTime dob = chef.DateOfBirth; 
+                        var age = now.Year - dob.Year;
+                        <td>@age</td>}
+                        <td>@chef.ChefDishes.Count</td>
+                    </tr>
+                }
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>

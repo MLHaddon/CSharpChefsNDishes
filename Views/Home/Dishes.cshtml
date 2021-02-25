@@ -1,0 +1,32 @@
+﻿@model List<Dish>
+<header class="container">
+    <div class="d-flex flex-lg-row justify-content-between align-items-center">
+        <h1><a asp-action="Index" asp-controller="Home">Chefs</a> | <a asp-action="Dishes" asp-controller="Home">Dishes</a></h1>
+        <a href="Add/Dish">Add A Dish</a>
+    </div>
+</header>
+<main class="container">
+    <div class="container-fluid">
+        <h3>Yum! Take a look at our tasty dishes!</h3>
+        <div style="width: 100%; height: 2px; border: solid black 1px;"></div>
+        <table class="table-bordered">
+            <thead>
+                <th>Name</th>
+                <th>Chef</th>
+                <th>Tastiness</th>
+                <th>Calories</th>
+            </thead>
+            <tbody>
+                    @foreach (Dish dish in Model)
+                    {
+                        <tr>
+                            <td>@dish.Name</td>
+                            <td>@dish.ChefOfDish.FirstName @dish.ChefOfDish.LastName</td>
+                            <td>@dish.Tastiness</td>
+                            <td>dish.Calories</td>
+                        </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+</main>

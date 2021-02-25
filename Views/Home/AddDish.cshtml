@@ -1,0 +1,44 @@
+@model Dish
+
+<div class="container-fluid">
+  <h1>Add a Dish!</h1>
+  <a asp-action="Index" asp-controller="Home">Home</a>
+  <div class="container">
+    <form action="/create/dish" method="post">
+      <div class="d-flex flex-row justify-content-around">
+        <div class="d-flex flex-column">
+          <label asp-for="Name"></label>
+          <input type="text" asp-for="Name">
+          <span class="text-danger" asp-validation-for="Name"></span>
+          <label asp-for="Calories"></label>
+          <input type="number" asp-for="Calories">
+          <span class="text-danger" asp-validation-for="Calories"></span>
+          <label asp-for="Desc"></label>
+          <textarea 
+            type="text"
+            asp-for="Desc"  
+            style="height: 75px; overflow: hidden; overflow-wrap: break-word; resize: none; margin-bottom: 2px;"
+            id="textarea"></textarea>
+          <span class="text-danger" asp-validation-for="Desc"></span>
+        </div>
+        <div class="d-flex flex-column">
+          <label asp-for="ChefOfDish"></label>
+          <select asp-for="ChefOfDish">
+            @foreach (Chef chef in ViewBag.ChefsOfDish)
+            {
+              <option asp-for="ChefOfDish" value="@chef">@chef.FirstName @chef.LastName</option>
+              <input type="hidden" asp-for="ChefId" value="@chef.ChefID">
+            }
+          </select>
+          <span class="text-danger" asp-validation-for="ChefOfDish"></span>
+          <button type="submit" class="btn-success">Submit</button>
+        </div>
+        <div class="d-flex flex-column">
+          <label asp-for="Tastiness"></label>
+          <input type="number" asp-for="Tastiness">
+          <span class="text-danger" asp-validation-for="Tastiness"></span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
